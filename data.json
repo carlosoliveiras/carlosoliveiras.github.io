@@ -1,0 +1,32 @@
+{
+  "profile": {
+    "name": "José Carlos",
+    "avatar": "https://avatars.githubusercontent.com/u/170959591?v=4",
+    "roles": [
+      "Programador Back-End",
+      "Voluntário na Amigos do Bem",
+      "Estudante de ADS"
+    ],
+    "bio": "construindo APIs, integrações, bancos de dados, infraestrutura em nuvem e o que mais vier pela frente.",
+    "current": "Programador back-end na Amigos do Bem",
+    "social": [
+      { "label": "E-mail", "icon": "fa-solid fa-at", "url": "mailto:joliveirasimiao@gmail.com" },
+      { "label": "LinkedIn", "icon": "fa-brands fa-square-linkedin", "url": "https://www.linkedin.com/in/carlosolliveira/" },
+      { "label": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/carlosoliveiras" }
+    ]
+  },
+  "links": [
+    { "title": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/carlosoliveiras" },
+    { "title": "LinkedIn", "icon": "fa-brands fa-linkedin", "url": "https://www.linkedin.com/in/carlosolliveira/" },
+    { "title": "AMD Ryzen 5500", "icon": "fa-solid fa-microchip", "url": "https://meli.la/2LmAdHQ" }
+  ],
+  "projects": [
+    {
+      "name": "fig-linux",
+      "image": "img/fig-linux.jpg",
+      "summary": "App desktop não oficial do Figma para Linux.",
+      "description": "App desktop não oficial do Figma para Linux, feito com Electron. Distribuído em pacotes .deb, .rpm, pacman, AppImage e .zip, e migra automaticamente configurações, sessão e temas de quem vem do figma-linux.",
+      "url": "https://github.com/carlosoliveiras/fig-linux"
+    }
+  ]
+}

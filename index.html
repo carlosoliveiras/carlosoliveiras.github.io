@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>José Carlos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,52 +15,71 @@
       src="https://kit.fontawesome.com/f92159e032.js"
       crossorigin="anonymous"
     ></script>
+    <script src="js/main.js" defer></script>
   </head>
-  <body>
+  <body class="is-loading">
     <main>
-      <section>
+      <section class="profile">
         <div class="profile-image">
-          <img
-            src="https://avatars.githubusercontent.com/u/170959591?v=4"
-            alt="Foto de perfil"
-          />
+          <img data-field="avatar" alt="Foto de perfil" />
         </div>
         <p>
-          <strong>José Carlos</strong> é
+          <strong data-field="name">José Carlos</strong> é
           <span class="roles">
-            <span class="roles__label"><strong>Programador Back-End</strong></span><i
+            <span class="roles__label"><strong data-field="role">Programador Back-End</strong></span><i
               class="fa-solid fa-circle-chevron-down roles__badge"
             ></i>
-            <span class="roles__card">
-              <span class="roles__item">Programador Back-End</span>
-              <span class="roles__item">Voluntário na Amigos do Bem</span>
-              <span class="roles__item">Estudante de ADS</span>
-            </span>
+            <span class="roles__card" data-field="roles"></span>
           </span><br>
-          construindo APIs, integrações, bancos de dados, infraestrutura em nuvem
-          e o que mais vier pela frente.
+          <span data-field="bio">construindo APIs, integrações, bancos de dados e o que mais vier.</span>
         </p>
         <aside class="current-position">
           <h3>Atualmente</h3>
-          <p>Programador back-end na Amigos do Bem</p>
+          <p data-field="current">Programador back-end na Amigos do Bem</p>
         </aside>
-        <article class="social-links">
-          <a href="mailto:joliveirasimiao@gmail.com"
-            ><i class="fa-solid fa-at"></i
-          ></a>
-          <a
-            href="https://www.linkedin.com/in/carlosolliveira/"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><i class="fa-brands fa-square-linkedin"></i></a>
-          <a
-            href="https://github.com/carlosoliveiras"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><i class="fa-brands fa-github"></i
-          ></a>
-          <!-- <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a> -->
+        <article class="social-links" data-field="social">
+          <span class="skeleton skeleton--circle"></span>
+          <span class="skeleton skeleton--circle"></span>
+          <span class="skeleton skeleton--circle"></span>
         </article>
+      </section>
+      <section class="content">
+        <nav class="tabs">
+          <input type="radio" name="tab" id="tab-tudo" checked />
+          <label for="tab-tudo">Tudo</label>
+          <input type="radio" name="tab" id="tab-link" />
+          <label for="tab-link">Link</label>
+          <input type="radio" name="tab" id="tab-projeto" />
+          <label for="tab-projeto">Projeto</label>
+        </nav>
+        <div class="content__group" data-type="link">
+          <h2>Links</h2>
+          <ul class="content__list" data-field="links">
+            <li class="skeleton skeleton--link"></li>
+            <li class="skeleton skeleton--link"></li>
+            <li class="skeleton skeleton--link"></li>
+          </ul>
+        </div>
+        <div class="content__group" data-type="projeto">
+          <h2>Projetos</h2>
+          <ul class="content__list" data-field="projects">
+            <li class="skeleton skeleton--card"></li>
+            <li class="skeleton skeleton--card"></li>
+          </ul>
+        </div>
+        <dialog class="project-dialog" id="project-dialog" closedby="any">
+          <form method="dialog">
+            <button class="project-dialog__close" aria-label="Fechar">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </form>
+          <img data-field="image" alt="" />
+          <h3 data-field="name"></h3>
+          <p data-field="description"></p>
+          <a data-field="url" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-github"></i> Ver projeto
+          </a>
+        </dialog>
       </section>
     </main>
   </body>

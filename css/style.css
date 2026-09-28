@@ -1,5 +1,9 @@
 html {
-    font-size: 20px;
+    font-size: clamp(16px, 4vw, 20px);
+}
+
+img {
+    max-width: 100%;
 }
 
 body {
@@ -9,8 +13,8 @@ body {
 
 main {
     max-width: 700px;
-    margin: 10% auto;
-    /* padding: 20px; */
+    margin: clamp(24px, 8vh, 80px) auto;
+    padding: 0 16px;
 }
 
 h1,
@@ -147,5 +151,321 @@ section:has(.roles:hover) .roles__item {
     .roles__item,
     .roles__badge {
         transition: none;
+    }
+}
+
+/* --- Tabs da seção de conteúdo --- */
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-top: 40px;
+}
+
+.tabs input {
+    position: absolute;
+    opacity: 0;
+}
+
+.tabs label {
+    padding: 4px 14px;
+    border: 1px solid #747474;
+    border-radius: 999px;
+    color: #333;
+    cursor: pointer;
+}
+
+.tabs label:hover {
+    background-color: #b8b8b859;
+}
+
+.tabs input:checked + label {
+    background-color: #2c2c2c;
+    border-color: #2c2c2c;
+    color: #fff;
+}
+
+.tabs input:focus-visible + label {
+    outline: 2px solid #0853da;
+    outline-offset: 2px;
+}
+
+.content__list {
+    list-style: none;
+    padding: 0;
+}
+
+.content:has(#tab-link:checked) .content__group:not([data-type="link"]),
+.content:has(#tab-projeto:checked) .content__group:not([data-type="projeto"]) {
+    display: none;
+}
+
+/* --- Cards de projeto --- */
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    height: 100%;
+    padding: 0 0 14px;
+    border: 1px solid #d0d0d0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    font: inherit;
+    text-align: left;
+    color: #2c2c2c;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.project-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.project-card:focus-visible {
+    outline: 2px solid #0853da;
+    outline-offset: 2px;
+}
+
+.project-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+.project-card strong,
+.project-card span {
+    padding: 0 14px;
+}
+
+.project-card span {
+    font-size: 0.8rem;
+    color: #5a5a5a;
+}
+
+/* --- Popup de projeto --- */
+
+.project-dialog {
+    width: min(560px, calc(100% - 32px));
+    padding: 0 0 20px;
+    border: none;
+    max-height: calc(100dvh - 32px);
+    border-radius: 20px;
+    overflow-y: auto;
+}
+
+.project-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.project-dialog img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.project-dialog h3,
+.project-dialog p,
+.project-dialog a {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.project-dialog a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: #2c2c2c;
+    color: #fff;
+    text-decoration: none;
+}
+
+.project-dialog__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card {
+        transition: none;
+    }
+}
+
+/* --- Links estilo "link na bio" --- */
+
+.content__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bio-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border: 1px solid #d0d0d0;
+    border-radius: 16px;
+    background: #fff;
+    color: #2c2c2c;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.bio-link:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.bio-link:focus-visible {
+    outline: 2px solid #0853da;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bio-link {
+        transition: none;
+    }
+}
+
+/* título de cada grupo só aparece em "Tudo" */
+.content__group h2 {
+    margin: 28px 0 0;
+    font-size: 1rem;
+    color: #747474;
+}
+
+.content:not(:has(#tab-tudo:checked)) .content__group h2 {
+    display: none;
+}
+
+/* --- Responsivo --- */
+
+.content__group[data-type="projeto"] .content__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+}
+
+.tabs {
+    flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+    .social-links > a {
+        width: 44px;
+        height: 44px;
+    }
+
+    .project-dialog h3,
+    .project-dialog p,
+    .project-dialog a {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}
+
+/* --- Carregamento suave --- */
+
+main {
+    animation: fade-in 0.5s ease-out both;
+}
+
+.content__item {
+    animation: fade-in 0.4s ease-out both;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+.project-dialog[open] {
+    animation: fade-in 0.25s ease-out;
+}
+
+.project-dialog[open]::backdrop {
+    animation: backdrop-in 0.25s ease-out;
+}
+
+@keyframes backdrop-in {
+    from {
+        opacity: 0;
+    }
+}
+
+/* --- Skeleton --- */
+
+.skeleton,
+.is-loading .profile [data-field]:not([data-field="roles"], [data-field="social"]) {
+    background: linear-gradient(90deg, #e8e8e8 25%, #f4f4f4 50%, #e8e8e8 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+    border-radius: 8px;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    list-style: none;
+}
+
+.is-loading .profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.skeleton--circle {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.skeleton--link {
+    height: 54px;
+    border-radius: 16px;
+}
+
+.skeleton--card {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: -200% 0;
+    }
+}
+
+.content__error {
+    color: #747474;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    main,
+    .content__item,
+    .project-dialog[open],
+    .project-dialog[open]::backdrop,
+    .skeleton,
+    .is-loading .profile [data-field] {
+        animation: none;
     }
 }
