@@ -32,6 +32,13 @@
       "summary": "Sistema web desenvolvido para facilitar o gerenciamento de solicitações de serviços de manutenção e distribuição.",
       "description": "Sistema web desenvolvido para centralizar e organizar as solicitações de serviços de manutenção de uma unidade. A plataforma permite que usuários abram chamados, acompanhem seu andamento e consultem o histórico de solicitações, enquanto gestores realizam a triagem e distribuição das demandas para setores e técnicos responsáveis. O sistema também possui controle de status, notificações, registro de custos, filtros, pesquisa por número de ticket e geração de relatórios.",
       "url": "#"
+    },
+    {
+      "name": "IoT Termohigrômetro",
+      "image": "img/iot-termohigrometro.jpg",
+      "summary": "Projeto de Internet das Coisas desenvolvido para monitoramento das condições de temperatura e umidade em ambientes destinados ao armazenamento de medicamentos.",
+      "description": "Dispositivo IoT desenvolvido para monitorar temperatura e umidade em ambientes de armazenamento de medicamentos. Utilizando um ESP8266 e sensores DHT, o sistema realiza as medições e disponibiliza os dados para acompanhamento remoto por meio de um painel web, além de apresentar as informações em um display OLED. A solução foi desenvolvida para permitir o monitoramento das condições ambientais das farmácias e do depósito de medicamentos, reduzindo a necessidade de acompanhamento presencia",
+      "url": "#"
     }
   ]
 }
