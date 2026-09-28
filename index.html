@@ -11,6 +11,16 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script>
+      // aplica o tema antes de pintar a página, evitando piscar no claro
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("theme") ||
+          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      } catch {
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
     <script
       src="https://kit.fontawesome.com/f92159e032.js"
       crossorigin="anonymous"
@@ -18,6 +28,10 @@
     <script src="js/main.js" defer></script>
   </head>
   <body class="is-loading">
+    <button class="theme-toggle" type="button" aria-label="Ativar tema escuro" aria-pressed="false">
+      <span class="theme-toggle__moon"><i class="fa-solid fa-moon"></i></span>
+      <span class="theme-toggle__sun"><i class="fa-solid fa-sun"></i></span>
+    </button>
     <main>
       <section class="profile">
         <div class="profile-image">

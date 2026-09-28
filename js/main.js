@@ -91,7 +91,26 @@ function animateTabs() {
   });
 }
 
+function themeToggle() {
+  const root = document.documentElement;
+  const button = document.querySelector(".theme-toggle");
+  const sync = () => {
+    const dark = root.dataset.theme === "dark";
+    button.setAttribute("aria-pressed", dark);
+    button.ariaLabel = dark ? "Ativar tema claro" : "Ativar tema escuro";
+  };
+  sync();
+  button.addEventListener("click", () => {
+    root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+    try {
+      localStorage.setItem("theme", root.dataset.theme);
+    } catch {}
+    sync();
+  });
+}
+
 async function init() {
+  themeToggle();
   animateTabs();
   try {
     const response = await fetch("db/data.json");
