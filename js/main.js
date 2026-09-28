@@ -44,7 +44,8 @@ function renderLinks(links) {
       el("li", { className: "content__item" }, [
         el("a", { className: "bio-link", href: link.url, ...external(link.url) }, [
           icon(link.icon),
-          " " + link.title,
+          el("span", { textContent: link.title }),
+          icon("fa-solid fa-arrow-up-right-from-square bio-link__external"),
         ]),
       ])
     )

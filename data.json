@@ -16,8 +16,6 @@
     ]
   },
   "links": [
-    { "title": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/carlosoliveiras" },
-    { "title": "LinkedIn", "icon": "fa-brands fa-linkedin", "url": "https://www.linkedin.com/in/carlosolliveira/" },
     { "title": "AMD Ryzen 5500", "icon": "fa-solid fa-microchip", "url": "https://meli.la/2LmAdHQ" }
   ],
   "projects": [
@@ -27,6 +25,13 @@
       "summary": "App desktop não oficial do Figma para Linux.",
       "description": "App desktop não oficial do Figma para Linux, feito com Electron. Distribuído em pacotes .deb, .rpm, pacman, AppImage e .zip, e migra automaticamente configurações, sessão e temas de quem vem do figma-linux.",
       "url": "https://github.com/carlosoliveiras/fig-linux"
+    },
+    {
+      "name": "Abertura de Chamados",
+      "image": "img/abertura-de-chamados.png",
+      "summary": "Sistema web desenvolvido para facilitar o gerenciamento de solicitações de serviços de manutenção e distribuição.",
+      "description": "Sistema web desenvolvido para centralizar e organizar as solicitações de serviços de manutenção de uma unidade. A plataforma permite que usuários abram chamados, acompanhem seu andamento e consultem o histórico de solicitações, enquanto gestores realizam a triagem e distribuição das demandas para setores e técnicos responsáveis. O sistema também possui controle de status, notificações, registro de custos, filtros, pesquisa por número de ticket e geração de relatórios.",
+      "url": "#"
     }
   ]
 }

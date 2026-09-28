@@ -316,7 +316,6 @@ section:has(.roles:hover) .roles__item {
 .bio-link {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
     padding: 14px 20px;
     border: 1px solid #d0d0d0;
@@ -324,9 +323,14 @@ section:has(.roles:hover) .roles__item {
     background: #fff;
     color: #2c2c2c;
     font-weight: 500;
-    text-align: center;
     text-decoration: none;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.bio-link__external {
+    margin-left: auto;
+    font-size: 0.8em;
+    color: #747474;
 }
 
 .bio-link:hover {
