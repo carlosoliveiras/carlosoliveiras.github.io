@@ -1,4 +1,4 @@
-// Todo o conteúdo da página vem de data.json; edite só esse arquivo para atualizar o site.
+// Todo o conteúdo da página vem de db/data.json; edite só esse arquivo para atualizar o site.
 
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -94,14 +94,14 @@ function animateTabs() {
 async function init() {
   animateTabs();
   try {
-    const response = await fetch("data.json");
+    const response = await fetch("db/data.json");
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     renderProfile(data.profile);
     renderLinks(data.links);
     renderProjects(data.projects);
   } catch (error) {
-    console.error("Falha ao carregar data.json:", error);
+    console.error("Falha ao carregar db/data.json:", error);
     document.querySelectorAll(".skeleton").forEach((node) => node.remove());
     field(document, "links").replaceChildren(
       el("li", { className: "content__error", textContent: "Não foi possível carregar o conteúdo." })
