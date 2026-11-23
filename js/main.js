@@ -52,22 +52,45 @@ function renderLinks(links) {
   );
 }
 
+function renderRecommendations(items) {
+  field(document, "recommendations").replaceChildren(
+    ...(items.length
+      ? items.map((item) =>
+          el("li", { className: "content__item" }, [
+            el("a", { className: "bio-link", href: item.url, ...external(item.url) }, [
+              el("span", { className: "bio-link__text" }, [
+                el("span", { textContent: item.title }),
+                el("small", { textContent: item.description }),
+              ]),
+              icon("fa-solid fa-arrow-up-right-from-square bio-link__external"),
+            ]),
+          ])
+        )
+      : [el("li", { className: "content__error", textContent: "Nenhuma recomendação ainda." })])
+  );
+}
+
 function renderProjects(projects) {
   const dialog = document.getElementById("project-dialog");
 
   field(document, "projects").replaceChildren(
     ...projects.map((project) => {
       const card = el("button", { className: "project-card" }, [
-        el("img", { src: project.image, alt: "", loading: "lazy" }),
+        el("img", { src: project.image, alt: "", loading: "lazy", style: `object-fit: ${project.imageFit || "cover"}` }),
         el("strong", { textContent: project.name }),
         el("span", { textContent: project.summary }),
       ]);
       card.addEventListener("click", () => {
         field(dialog, "image").src = project.image;
         field(dialog, "image").alt = project.name;
+        field(dialog, "image").style.objectFit = project.imageFit || "cover";
         field(dialog, "name").textContent = project.name;
         field(dialog, "description").textContent = project.description;
+        field(dialog, "technologies").replaceChildren(
+          ...(project.technologies || []).map((tech) => el("li", { textContent: tech }))
+        );
         field(dialog, "url").href = project.url;
+        field(dialog, "url").hidden = !project.url;
         dialog.showModal();
       });
       return el("li", { className: "content__item" }, [card]);
@@ -119,6 +142,7 @@ async function init() {
     renderProfile(data.profile);
     renderLinks(data.links);
     renderProjects(data.projects);
+    renderRecommendations(data.recommendations || []);
   } catch (error) {
     console.error("Falha ao carregar db/data.json:", error);
     document.querySelectorAll(".skeleton").forEach((node) => node.remove());
