@@ -46,6 +46,13 @@ img {
     max-width: 100%;
 }
 
+/* barra de rolagem fina, nas cores do tema */
+html,
+.project-dialog {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+}
+
 body {
     font-family: "Google Sans", system-ui, sans-serif;
     line-height: 1.5;
@@ -70,6 +77,24 @@ p {
     color: var(--text);
 }
 
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+.roles:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
 .profile-image img {
     width: 100px;
     height: 100px;
@@ -88,6 +113,18 @@ p {
     margin-right: 10px;
     text-decoration: none;
     color: var(--text);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.social-links>a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.social-links>a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .social-links>a:hover {
@@ -96,8 +133,8 @@ p {
 }
 
 .current-position h3 {
-    margin-bottom: -4px;
-    font-weight: regular;
+    margin-bottom: 0;
+    font-weight: 400;
     color: var(--muted);
 }
 
@@ -129,7 +166,8 @@ p {
     transition: transform 0.3s ease;
 }
 
-.roles:hover .roles__badge {
+.roles:hover .roles__badge,
+.roles:focus-within .roles__badge {
     transform: rotate(180deg);
 }
 
@@ -148,7 +186,8 @@ p {
     transition: gap 0.4s cubic-bezier(0.34, 1.42, 0.64, 1);
 }
 
-.roles:hover .roles__card {
+.roles:hover .roles__card,
+.roles:focus-within .roles__card {
     gap: 8px;
     pointer-events: auto;
 }
@@ -169,30 +208,32 @@ p {
         visibility 0.2s ease;
 }
 
-.roles:hover .roles__item {
+.roles:hover .roles__item,
+.roles:focus-within .roles__item {
     opacity: 1;
     visibility: visible;
 }
 
-.roles:hover .roles__item:nth-child(1) { transition-delay: 0.02s; }
-.roles:hover .roles__item:nth-child(2) { transition-delay: 0.07s; }
-.roles:hover .roles__item:nth-child(3) { transition-delay: 0.12s; }
+.roles:is(:hover, :focus-within) .roles__item:nth-child(1) { transition-delay: 0.02s; }
+.roles:is(:hover, :focus-within) .roles__item:nth-child(2) { transition-delay: 0.07s; }
+.roles:is(:hover, :focus-within) .roles__item:nth-child(3) { transition-delay: 0.12s; }
 
 /* texto em volta esmaece enquanto o card está aberto */
-section:has(.roles:hover) p,
-section:has(.roles:hover) .current-position h3 {
+section:has(.roles:is(:hover, :focus-within)) p,
+section:has(.roles:is(:hover, :focus-within)) .current-position h3 {
     color: var(--muted);
     transition: color 0.3s ease;
 }
 
-section:has(.roles:hover) .roles__item {
+section:has(.roles:is(:hover, :focus-within)) .roles__item {
     color: var(--heading);
 }
 
 @media (prefers-reduced-motion: reduce) {
     .roles__card,
     .roles__item,
-    .roles__badge {
+    .roles__badge,
+    .social-links>a {
         transition: none;
     }
 }
@@ -239,7 +280,8 @@ section:has(.roles:hover) .roles__item {
 }
 
 .content:has(#tab-link:checked) .content__group:not([data-type="link"]),
-.content:has(#tab-projeto:checked) .content__group:not([data-type="projeto"]) {
+.content:has(#tab-projeto:checked) .content__group:not([data-type="projeto"]),
+.content:has(#tab-recomendacao:checked) .content__group:not([data-type="recomendacao"]) {
     display: none;
 }
 
@@ -303,6 +345,19 @@ section:has(.roles:hover) .roles__item {
     overflow-y: auto;
 }
 
+/* modal aberto trava a rolagem da página atrás; gutter evita o pulo do layout */
+html {
+    scrollbar-gutter: stable;
+}
+
+html:has(.project-dialog[open]) {
+    overflow: hidden;
+}
+
+.project-dialog {
+    overscroll-behavior: contain;
+}
+
 .project-dialog::backdrop {
     background: rgba(0, 0, 0, 0.5);
 }
@@ -329,6 +384,41 @@ section:has(.roles:hover) .roles__item {
     background: var(--invert-bg);
     color: var(--invert-text);
     text-decoration: none;
+}
+
+/* "\n\n" na descrição do data.json vira parágrafo */
+.project-dialog [data-field="description"] {
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+/* tecnologias do projeto em chips com borda */
+.tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 20px 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.tech-list:empty {
+    display: none;
+}
+
+.tech-list li {
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.project-dialog a[hidden] {
+    display: none;
 }
 
 .project-dialog__close {
@@ -371,6 +461,17 @@ section:has(.roles:hover) .roles__item {
     font-weight: 500;
     text-decoration: none;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.bio-link__text {
+    display: flex;
+    flex-direction: column;
+}
+
+.bio-link__text small {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--muted);
 }
 
 .bio-link__external {
@@ -475,7 +576,25 @@ main {
     list-style: none;
 }
 
-.is-loading .profile-image img {
+.is-loading .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
+.roles:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.profile-image img {
     width: 100px;
     height: 100px;
     border-radius: 50%;

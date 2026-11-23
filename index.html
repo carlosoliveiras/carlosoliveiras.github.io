@@ -50,12 +50,14 @@
     </button>
     <main>
       <section class="profile">
-        <div class="profile-image">
-          <img data-field="avatar" alt="Foto de perfil" />
-        </div>
+        <header class="profile-header">
+          <div class="profile-image">
+            <img data-field="avatar" alt="Foto de perfil" />
+          </div>
+          <h1 data-field="name">José Carlos</h1>
+        </header>
         <p>
-          <strong data-field="name">José Carlos</strong> é
-          <span class="roles">
+          <span class="roles" tabindex="0">
             <span class="roles__label"><strong data-field="role">Programador Back-End</strong></span><i
               class="fa-solid fa-circle-chevron-down roles__badge"
             ></i>
@@ -81,6 +83,8 @@
           <label for="tab-link">Links</label>
           <input type="radio" name="tab" id="tab-projeto" />
           <label for="tab-projeto">Projetos</label>
+          <input type="radio" name="tab" id="tab-recomendacao" />
+          <label for="tab-recomendacao">Recomendações</label>
         </nav>
         <div class="content__group" data-type="link">
           <h2>Links</h2>
@@ -97,6 +101,12 @@
             <li class="skeleton skeleton--card"></li>
           </ul>
         </div>
+        <div class="content__group" data-type="recomendacao">
+          <h2>Recomendações</h2>
+          <ul class="content__list" data-field="recommendations">
+            <li class="skeleton skeleton--link"></li>
+          </ul>
+        </div>
         <dialog class="project-dialog" id="project-dialog" closedby="any">
           <form method="dialog">
             <button class="project-dialog__close" aria-label="Fechar">
@@ -106,6 +116,7 @@
           <img data-field="image" alt="" />
           <h3 data-field="name"></h3>
           <p data-field="description"></p>
+          <ul class="tech-list" data-field="technologies"></ul>
           <a data-field="url" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-github"></i> Ver projeto
           </a>
