@@ -673,3 +673,34 @@ main {
 [data-theme="dark"] .theme-toggle__sun {
     display: inline-block;
 }
+
+/* --- Desktop: perfil fixo à esquerda, conteúdo à direita --- */
+
+@media (min-width: 1024px) {
+    main {
+        max-width: 1120px;
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 64px;
+        align-items: start;
+    }
+
+    .profile {
+        position: sticky;
+        top: clamp(24px, 8vh, 80px);
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-image img {
+        width: 140px;
+        height: 140px;
+    }
+
+    .tabs {
+        margin-top: 0;
+    }
+}
