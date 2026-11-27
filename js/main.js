@@ -70,15 +70,50 @@ function renderRecommendations(items) {
   );
 }
 
+// número em destaque do projeto; "series" vira um gráfico de linha ao lado
+function renderMetric({ value, label, series }) {
+  const text = el("span", { className: "metric__text" }, [
+    el("span", { className: "metric__value", textContent: value }),
+    el("span", { className: "metric__label", textContent: label }),
+  ]);
+  return el("span", { className: "metric" }, series?.length > 1 ? [text, sparkline(series, label)] : [text]);
+}
+
+// linha com área em degradê, como os cards do deyv.in
+function sparkline(series, label) {
+  const w = 120, h = 48, pad = 4;
+  const min = Math.min(...series), max = Math.max(...series);
+  const points = series.map((v, i) => [
+    pad + (i * (w - 2 * pad)) / (series.length - 1),
+    h - pad - ((v - min) / (max - min || 1)) * (h - 2 * pad),
+  ]);
+  const line = points.map(([x, y], i) => `${i ? "L" : "M"} ${x} ${y}`).join(" ");
+  const area = `${line} L ${points.at(-1)[0]} ${h} L ${pad} ${h} Z`;
+  const span = el("span", { className: "metric__chart", role: "img", ariaLabel: `Gráfico de ${label}` });
+  span.innerHTML = `<svg viewBox="0 0 ${w} ${h}" aria-hidden="true">
+    <defs><linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="currentColor" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="currentColor" stop-opacity="0"/>
+    </linearGradient></defs>
+    <path d="${area}" fill="url(#spark-fill)"/>
+    <path d="${line}" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${points.at(-1)[0]}" cy="${points.at(-1)[1]}" r="3" fill="currentColor"/>
+  </svg>`;
+  return span;
+}
+
 function renderProjects(projects) {
   const dialog = document.getElementById("project-dialog");
 
   field(document, "projects").replaceChildren(
     ...projects.map((project) => {
       const card = el("button", { className: "project-card" }, [
-        el("img", { src: project.image, alt: "", loading: "lazy", style: `object-fit: ${project.imageFit || "cover"}` }),
-        el("strong", { textContent: project.name }),
-        el("span", { textContent: project.summary }),
+        el("span", { className: "project-card__head" }, [
+          el("strong", { textContent: project.name }),
+          ...(project.status ? [el("small", { className: "badge", textContent: project.status })] : []),
+        ]),
+        el("span", { className: "project-card__summary", textContent: project.summary }),
+        ...(project.metric ? [renderMetric(project.metric)] : []),
       ]);
       card.addEventListener("click", () => {
         field(dialog, "image").src = project.image;

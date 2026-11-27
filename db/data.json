@@ -23,7 +23,9 @@
       "name": "Abertura de Chamados",
       "image": "img/abertura-de-chamados.png",
       "imageFit": "contain",
-      "summary": "Sistema da Startup do Bem para organizar a manutenção das unidades da Amigos do Bem.",
+      "summary": "Chamados de manutenção das unidades da Amigos do Bem.",
+      "status": "Em produção",
+      "metric": { "value": "9000+", "label": "chamados registrados", "series": [300, 900, 1700, 2600, 3500, 4300, 5200, 6100, 7000, 7800, 8500, 9000] },
       "description": "Antes, os pedidos de conserto se perdiam em conversas e ninguém sabia o que já tinha sido resolvido.\n\nNo Abertura de Chamados, qualquer colaborador abre um chamado com descrição, urgência, setor e foto, e acompanha o reparo até o fim. O gestor define a prioridade e encaminha ao técnico, que registra o serviço, as fotos e o custo.\n\nUm painel mostra pendências, tempo médio de resolução e gastos por unidade, setor e técnico, com relatório em CSV.\n\nEm produção, com mais de 9000 chamados registrados e mais de 8000 resolvidos.",
       "technologies": ["Laravel", "Vue", "MySQL", "AWS", "Cloudflare"],
       "url": ""
@@ -31,15 +33,16 @@
     {
       "name": "fig-linux",
       "image": "img/fig-linux.jpg",
-      "summary": "Fork do figma-linux, app desktop não oficial do Figma para Linux, melhorado com ajuda do Claude.",
-      "description": "Peguei o figma-linux, projeto que já existia, e usei o Claude para auditar e melhorar o código. As mudanças entraram em mais de 20 PRs.\n\nCorrigi bugs: diálogos do Zenity chamados sem shell (falha de segurança), chamadas do Figma que quebravam ou entravam em loop, abas e listeners que não eram liberados ao fechar a janela e o Save do Theme Creator, que nunca funcionava.\n\nMelhorei o desempenho: o menu não é mais reconstruído a cada evento, os temas são baixados uma vez só e o Theme Creator só carrega quando a aba é aberta. Removi código morto e dependências sem uso, e zerei os erros do eslint.\n\nTambém ajustei o app para o Claude conseguir se conectar ao Figma pelo plugin designagent.\n\nDistribuído em pacotes .deb, .rpm, pacman, AppImage e .zip, e migra configurações, sessão e temas de quem vem do figma-linux.",
+      "summary": "App desktop não oficial do Figma para Linux.",
+      "status": "Open source",
+      "description": "App desktop não oficial do Figma para Linux, feito com Electron. Não tem vínculo com a Figma, Inc.\n\nCorrigi bugs: diálogos do Zenity chamados sem shell (falha de segurança), chamadas do Figma que quebravam ou entravam em loop, abas e listeners que não eram liberados ao fechar a janela e o Save do Theme Creator, que nunca funcionava.\n\nMelhorei o desempenho: o menu não é mais reconstruído a cada evento, os temas são baixados uma vez só e o Theme Creator só carrega quando a aba é aberta. Removi código morto e dependências sem uso, e zerei os erros do eslint.\n\nTambém ajustei o app para o Claude conseguir se conectar ao Figma pelo plugin designagent.\n\nDistribuído em pacotes .deb, .rpm, pacman, AppImage e .zip, e migra configurações, sessão e temas de quem vem do figma-linux.",
       "technologies": ["Electron", "Svelte", "Claude"],
       "url": "https://github.com/carlosoliveiras/fig-linux"
     },
     {
       "name": "IoT Termohigrômetro",
       "image": "img/iot-termohigrometro.jpg",
-      "summary": "Projeto de Internet das Coisas desenvolvido para monitoramento das condições de temperatura e umidade em ambientes destinados ao armazenamento de medicamentos.",
+      "summary": "Monitora temperatura e umidade onde ficam os medicamentos.",
       "description": "Dispositivo IoT para monitorar a temperatura e a umidade dos lugares onde ficam os medicamentos: as farmácias e o depósito.\n\nUm ESP8266 lê os sensores DHT e mostra os valores em um display OLED. Os dados também vão para um painel web, onde a equipe acompanha as condições de longe.\n\nAssim a equipe precisa ir menos ao local para conferir se os medicamentos estão bem guardados.",
       "technologies": ["ESP8266", "DHT", "OLED"],
       "url": "#"
